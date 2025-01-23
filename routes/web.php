@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,10 @@ Route::prefix('api')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
 
     Route::middleware('auth:sanctum')->group(function () {
+        Route::post('update-user-info', [UserController::class, 'updateUserInfo']);
         Route::post('logout', [LoginController::class, 'logout']);
         Route::post('logout-all', [LoginController::class, 'logoutFromAllSessions']);
     });
 });
-
 
 require __DIR__.'/auth.php';
